@@ -1,0 +1,248 @@
+.App {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.grid-container {
+  display: flex;
+  gap: 0.2rem;
+  justify-content: space-between;
+}
+
+.day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(53, 53, 53, 0.89);
+  border: 1px solid rgba(14, 10, 10, 0.082);
+  border-radius: 8px;
+  padding: 8px;
+}
+.date:hover {
+  cursor: pointer;
+}
+
+.day-cell .cell.today {
+  background: white;
+  border-radius: 3px;
+  color: black;
+}
+
+.day-cell .cell.selected {
+  background: rgb(12, 12, 12);
+  border-radius: 3px;
+  color: white;
+}
+
+.day {
+  font-size: 12px;
+}
+
+.main-container {
+  margin-left: auto;
+  margin-right: auto;
+  background: #fec775;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 320px;
+}
+.selectedDetails {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffe2b7;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 320px;
+  height: 70px;
+}
+.eventHeader {
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.eventsText {
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  height: 40px;
+  font-size: 13px;
+}
+
+.control-area {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 12px;
+}
+.footer-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 12px;
+}
+
+.control-area span {
+  font-weight: 200;
+}
+
+.month {
+  text-transform: uppercase;
+}
+.calenderTitle {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.navigationBtnText {
+  display: flex;
+  align-items: center;
+}
+.btn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 11px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+.inline-main-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 10px;
+  width: 290px;
+  height: 300px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.inline-main-container .header {
+  background: #fec775;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  height: 80px;
+  color: rgb(54, 54, 54);
+}
+.inline-main-container .inline-today {
+  font-weight: bold;
+  color: rgb(54, 54, 54);
+  font-size: 18px;
+}
+.inline-main-container .navigationBar {
+  height: 35px;
+  color: rgba(0, 0, 0, 0.637);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.inline-main-container .years_card {
+  background: red;
+  position: absolute;
+  z-index: 50;
+}
+.inline-main-container .year-selector {
+  display: flex;
+  align-items: center;
+  height: 400px;
+}
+
+.inline-main-container .years-selector-icon {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.inline-main-container .titleBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0px 10px 0px 10px;
+}
+
+.inline-main-container .closeBtn {
+  border: 1px solid rgba(14, 10, 10, 0.082);
+  padding-left: 4px;
+  font-size: 12px;
+  padding-right: 4px;
+  border-radius: 3px;
+  color: gray;
+  background: white;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+.inline-main-container .closeBtn:hover {
+  cursor: pointer;
+  background: #000000;
+  color: white;
+  border: 1px solid #fec775;
+}
+.inline-main-container .navBtnPrev {
+  border: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.637);
+  background: transparent;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+
+.inline-main-container .navBtnNext {
+  border: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.637);
+  background: transparent;
+  border-radius: 5px;
+}
+
+.inline-main-container .navBtnPrev:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.inline-main-container .navBtnNext:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.inline-main-container .inline-days {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.637);
+}
+.progressText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #000000a4;
+  margin-top: 40px;
+}
