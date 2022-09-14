@@ -5,7 +5,7 @@
 // * @GitLab: https://gitlab.com/asegaismail
 // * @Tel: +256-784-491412 / +256-756-454376
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { IoChevronForwardSharp } from "react-icons/io5";
 import { IoChevronBackSharp } from "react-icons/io5";
@@ -162,6 +162,24 @@ const Calendar: React.FC<calendar> = (props) => {
     return rows;
   };
 
+  const customSetDate = () => {
+    if (!customDate) {
+      const currentDayStr = moment().format("ddd Do MMM YYYY");
+      setDateDetails(currentDayStr);
+    } else {
+      const customSelectedDay = moment(customDate, "DD-MM-YYYY").format(
+        "ddd Do MMM YYYY"
+      );
+      setDateDetails(customSelectedDay);
+      setCurrentMonth(moment(customDate, "DD-MM-YYYY"));
+    }
+  };
+
+  useEffect(() => {
+    customSetDate();
+    calendarHeader();
+  }, [customDate]);
+
   const daysGrid: JSX.Element[] = calendarDays().map((day, index) => {
     const date = dateCells()[0][index];
     return (
@@ -183,7 +201,6 @@ const Calendar: React.FC<calendar> = (props) => {
           title="Select Date"
         />
       )}
-      {console.log("date", customDate)}
       <div className="main-container">
         <div className="control-area">
           <button className="btn" onClick={previousWeekNavigation}>
