@@ -7,12 +7,12 @@
 
 import React from "react";
 import "./assets/styles.css";
-import CalendarView from "./components/calendarView";
+import CalendarView from "./components/calendar";
 
 export default function App() {
   return (
     <>
-      <CalendarView />
+      <CalendarView title="Calendar" />
     </>
   );
 }
