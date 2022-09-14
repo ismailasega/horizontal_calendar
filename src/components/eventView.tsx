@@ -10,7 +10,6 @@ import React from "react";
 /**
  * Declaring type of props
  *
- * @param type dateview
  */
 type dateView = {
   title: string;
