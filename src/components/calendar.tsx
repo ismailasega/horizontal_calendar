@@ -7,13 +7,14 @@
 
 import React, { useState } from "react";
 import moment from "moment";
+import { IoChevronForwardSharp } from "react-icons/io5";
+import { IoChevronBackSharp } from "react-icons/io5";
 import EventView from "./eventView";
 import InlineCalendar from "./inlineCalendar";
 
 /**
  * Declaring type of props
  *
- * @param type calender
  */
 type calendar = {
   title: string;
@@ -23,25 +24,22 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Declaring current day string
    *
-   * @param currentDayStr
-   * @returns currentdaystring
    */
   const currentDayStr = moment().format("ddd Do MMM YYYY");
 
   /**
    * Declaring state values
    *
-   * @param state
    */
   const [currentMonth, setCurrentMonth] = useState(moment());
   const [selectedDate, setSelectedDate] = useState(moment());
   const [viewDateDetails, setDateDetails] = useState(currentDayStr);
   const [showInlineCalendar, setInlineCalendar] = useState(false);
   const [isOverlay, setOverlay] = useState(false);
+  const [customDate, setCustomDate] = useState<string>("");
   /**
    * Previous week navigation
    *
-   * @param previousWeekNavigation
    */
   const previousWeekNavigation = () => {
     setCurrentMonth(moment(currentMonth).subtract(1, "week"));
@@ -50,7 +48,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Next week navigation
    *
-   * @param nextWeekNavigation
    */
   const nextWeekNavigation = () => {
     setCurrentMonth(moment(currentMonth).add(1, "week"));
@@ -59,7 +56,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Get popup for selecting custom
    *
-   * @param getCustomDate
    */
   const getCustomDate = () => {
     setInlineCalendar(true);
@@ -69,7 +65,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Closing popup for selecting custom
    *
-   * @param closeCustomDate
    */
   const closeCustomDate = () => {
     setInlineCalendar(false);
@@ -79,7 +74,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Show current week
    *
-   * @param thisWeekView
    */
   const thisWeekView = () => {
     setCurrentMonth(moment());
@@ -88,7 +82,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Calender header
    *
-   * @param calendarHeader
    * @returns current Month
    */
   const calendarHeader = () => {
@@ -102,7 +95,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Calender days
    *
-   * @param calendarDays
    * @returns weekdays
    */
   const calendarDays = () => {
@@ -119,8 +111,9 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Selected date
    *
-   * @param selectDate
-   * @returns date
+   * @param day
+   * @param seledDayStr
+   * @returns selected date
    */
   const selectDate = (day: number, selectedDayStr: string) => {
     setSelectedDate(moment(day));
@@ -130,7 +123,6 @@ const Calendar: React.FC<calendar> = (props) => {
   /**
    * Dates
    *
-   * @param dateCells
    * @returns dates
    */
   const dateCells = () => {
@@ -146,7 +138,7 @@ const Calendar: React.FC<calendar> = (props) => {
         const cloneDay = +day;
         days.push(
           <div
-            className={`col cell ${
+            className={`cell ${
               moment(day).isSame(moment(), "day")
                 ? "today"
                 : moment(day).isSame(selectedDate, "day")
@@ -185,26 +177,40 @@ const Calendar: React.FC<calendar> = (props) => {
       {isOverlay && <div className="overlay"></div>}
       <strong className="calenderTitle">{props.title}</strong>
       {showInlineCalendar && (
-        <InlineCalendar close={closeCustomDate} title="Select Date" />
+        <InlineCalendar
+          close={closeCustomDate}
+          setCustomDateStr={setCustomDate}
+          title="Select Date"
+        />
       )}
+      {console.log("date", customDate)}
       <div className="main-container">
         <div className="control-area">
           <button className="btn" onClick={previousWeekNavigation}>
-            <span>{"< "}LAST</span> <strong>WEEK</strong>
+            <IoChevronBackSharp />{" "}
+            <span>
+              LAST <strong>WEEK</strong>
+            </span>
           </button>
           <div className="month">{calendarHeader()}</div>
           <button className="btn" onClick={nextWeekNavigation}>
-            <span>NEXT</span> <strong>WEEK</strong>
-            {" >"}
+            <span>
+              NEXT <strong> WEEK</strong>{" "}
+            </span>
+            <IoChevronForwardSharp />
           </button>
         </div>
         <div className="grid-container">{daysGrid}</div>
         <div className="footer-area">
           <button className="btn" onClick={thisWeekView}>
-            <span>THIS</span> <strong>WEEK</strong>
+            <span>
+              THIS <strong>WEEK</strong>
+            </span>
           </button>
           <button className="btn" onClick={getCustomDate}>
-            <span>GO</span> <strong>TO</strong>
+            <span>
+              GO <strong>TO</strong>
+            </span>
           </button>
         </div>
       </div>
