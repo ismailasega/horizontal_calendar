@@ -164,6 +164,12 @@ const Calendar: React.FC<calendar> = (props) => {
     return rows;
   };
 
+  /**
+   * Custom Date Selection
+   *
+   * @returns dates
+   */
+
   const customSetDate = () => {
     if (!customDate) {
       const currentDayStr = moment().format("ddd Do MMM YYYY");
@@ -174,12 +180,12 @@ const Calendar: React.FC<calendar> = (props) => {
       );
       setDateDetails(customSelectedDay);
       setCurrentMonth(moment(customDate, "DD-MM-YYYY"));
+      setSelectedDate(moment(customDate, "DD-MM-YYYY"));
     }
   };
 
   useEffect(() => {
     customSetDate();
-    calendarHeader();
   }, [customDate]);
 
   const daysGrid: JSX.Element[] = calendarDays().map((day, index) => {
