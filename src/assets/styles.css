@@ -7,7 +7,6 @@
   gap: 0.2rem;
   justify-content: space-between;
 }
-
 .day-cell {
   display: flex;
   flex-direction: column;
@@ -94,6 +93,7 @@
 
 .month {
   text-transform: uppercase;
+  font-size: 15px;
 }
 .calenderTitle {
   display: flex;
@@ -109,6 +109,8 @@
 }
 .btn {
   cursor: pointer;
+  display: flex;
+  align-items: center;
   background: transparent;
   border: none;
   font-size: 11px;
@@ -124,8 +126,8 @@
   margin: 0 auto;
   background: #ffffff;
   border-radius: 10px;
-  width: 290px;
-  height: 300px;
+  width: 340px;
+  height: 320px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
 .overlay {
@@ -138,46 +140,58 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.inline-main-container .header {
+.header {
   background: #fec775;
   border-radius: 10px 10px 0 0;
   text-align: center;
-  height: 80px;
+  height: 50px;
   color: rgb(54, 54, 54);
 }
-.inline-main-container .inline-today {
+.inline-today {
   font-weight: bold;
   color: rgb(54, 54, 54);
   font-size: 18px;
 }
-.inline-main-container .navigationBar {
+.navigationBar {
   height: 35px;
   color: rgba(0, 0, 0, 0.637);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.inline-main-container .years_card {
-  background: red;
+.years_card {
   position: absolute;
-  z-index: 50;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: white;
+  width: 340px;
+  height: 270px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
-.inline-main-container .year-selector {
+.year-selector {
   display: flex;
   align-items: center;
-  height: 400px;
 }
-
-.inline-main-container .years-selector-icon {
+.year-selector:hover {
+  cursor: pointer;
+  color: black;
+}
+.years-selector-icon {
   font-size: 12px;
-  margin-left: 5px;
+  margin-left: 4px;
+  height: 12px;
+  margin-bottom: 6px;
+  font-weight: bold;
 }
 
-.inline-main-container .titleBar {
+.titleBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -186,55 +200,80 @@
   padding: 0px 10px 0px 10px;
 }
 
-.inline-main-container .closeBtn {
-  border: 1px solid rgba(14, 10, 10, 0.082);
-  padding-left: 4px;
-  font-size: 12px;
-  padding-right: 4px;
+.closeBtn {
+  font-size: 18px;
+  color: rgb(65, 65, 65);
+  width: 15px;
+  height: 15px;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+  color: #000000;
+}
+.calendar-nav-today {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navBtnPrev {
+  border: 1px solid rgba(0, 0, 0, 0.637);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
   border-radius: 3px;
-  color: gray;
-  background: white;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+  width: 14px;
+  margin-right: 5px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.637);
+  background: transparent;
 }
-.inline-main-container .closeBtn:hover {
+
+.today-inline {
+  font-size: 13px;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.637);
+}
+
+.today-inline:hover {
   cursor: pointer;
-  background: #000000;
+  color: black;
+}
+
+.navBtnNext {
+  border: 1px solid rgba(0, 0, 0, 0.637);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  width: 14px;
+  margin-left: 5px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.637);
+  background: transparent;
+}
+
+.navBtnPrev:hover {
+  cursor: pointer;
   color: white;
-  border: 1px solid #fec775;
-}
-.inline-main-container .navBtnPrev {
-  border: none;
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.637);
-  background: transparent;
-  margin-right: 25px;
-  border-radius: 5px;
+  border: 1px solid black;
+  background: black;
 }
 
-.inline-main-container .navBtnNext {
-  border: none;
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.637);
-  background: transparent;
-  border-radius: 5px;
-}
-
-.inline-main-container .navBtnPrev:hover {
+.navBtnNext:hover {
   cursor: pointer;
-  color: black;
+  color: white;
+  border: 1px solid black;
+  background: black;
 }
 
-.inline-main-container .navBtnNext:hover {
-  cursor: pointer;
-  color: black;
-}
-
-.inline-main-container .inline-days {
+.inline-days {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.637);
 }
@@ -245,4 +284,111 @@
   font-size: 14px;
   color: #000000a4;
   margin-top: 40px;
+}
+.date-input-section {
+  color: rgba(0, 0, 0, 0.637);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+.divider {
+  height: 1px;
+  margin: 5px 0 10px 0;
+  margin-top: 115px;
+  background: #e0e0e0;
+}
+.date-input-month {
+  border: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-bottom: 1px solid gray;
+  width: 25px;
+}
+.date-input-year {
+  width: 40px;
+  border: none;
+  margin-left: 5px;
+  border-bottom: 1px solid gray;
+}
+.date-input-month:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.date-input-year:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.date-input-month::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.301);
+}
+.date-input-year::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.301);
+}
+.goBtn {
+  background: #fec775;
+  border: #fec775;
+  border-radius: 3px;
+  margin-left: 10px;
+  width: 45px;
+  height: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+.goBtn:hover {
+  cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid black;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.year-listing {
+  display: grid;
+  margin-left: 10px;
+  margin-right: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  height: 200px;
+  padding: 5px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.year-item {
+  padding: 3px;
+}
+.year-item:hover {
+  color: white;
+  background: black;
+  cursor: pointer;
+  border-radius: 4px;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fec775;
+}
+.year-item.currentYear {
+  background: #fec775;
+  font-weight: bold;
+  color: black;
+  border-radius: 4px;
+}
+.inline-back {
+  display: flex;
+  align-items: center;
+}
+.inline-back:hover {
+  cursor: pointer;
+  color: black;
 }
