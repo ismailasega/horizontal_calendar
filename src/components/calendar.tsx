@@ -77,6 +77,8 @@ const Calendar: React.FC<calendar> = (props) => {
    */
   const thisWeekView = () => {
     setCurrentMonth(moment());
+    const currentDayStr = moment().format("ddd Do MMM YYYY");
+    setDateDetails(currentDayStr);
   };
 
   /**
