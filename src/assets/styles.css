@@ -46,7 +46,7 @@
   width: 320px;
 }
 .selectedDetails {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   background: #ffe2b7;
@@ -391,4 +391,16 @@ input[type="number"]::-webkit-outer-spin-button {
 .inline-back:hover {
   cursor: pointer;
   color: black;
+}
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 13px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  text-align: center;
+  position: absolute;
 }
