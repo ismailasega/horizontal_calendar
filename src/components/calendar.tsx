@@ -37,6 +37,7 @@ const Calendar: React.FC<calendar> = (props) => {
   const [showInlineCalendar, setInlineCalendar] = useState(false);
   const [isOverlay, setOverlay] = useState(false);
   const [customDate, setCustomDate] = useState<string>("");
+  const [errorMessage, setErrorMessage]= useState<string>("");
   /**
    * Previous week navigation
    *
@@ -58,6 +59,7 @@ const Calendar: React.FC<calendar> = (props) => {
    *
    */
   const getCustomDate = () => {
+    setErrorMessage("");
     setInlineCalendar(true);
     setOverlay(true);
   };
@@ -149,6 +151,7 @@ const Calendar: React.FC<calendar> = (props) => {
             }`}
             key={i}
             onClick={() => {
+              setErrorMessage("")
               const selectedDayStr = moment(cloneDay).format("ddd Do MMM YYYY");
               selectDate(cloneDay, selectedDayStr);
             }}
@@ -175,12 +178,14 @@ const Calendar: React.FC<calendar> = (props) => {
       const currentDayStr = moment().format("ddd Do MMM YYYY");
       setDateDetails(currentDayStr);
     } else {
-      const customSelectedDay = moment(customDate, "DD-MM-YYYY").format(
-        "ddd Do MMM YYYY"
-      );
-      setDateDetails(customSelectedDay);
-      setCurrentMonth(moment(customDate, "DD-MM-YYYY"));
-      setSelectedDate(moment(customDate, "DD-MM-YYYY"));
+      if(moment(customDate, "DD-MM-YYYY", true).isValid()){
+        const customSelectedDay = moment(customDate, "DD-MM-YYYY", true).format(
+          "ddd Do MMM YYYY"
+        );
+        setDateDetails(customSelectedDay);
+        setCurrentMonth(moment(customDate, "DD-MM-YYYY"));
+        setSelectedDate(moment(customDate, "DD-MM-YYYY"));
+      } else setErrorMessage('Custom date: ' + customDate + ' format(DD-MM-YYYY) is invalid!')
     }
   };
 
@@ -238,6 +243,9 @@ const Calendar: React.FC<calendar> = (props) => {
             </span>
           </button>
         </div>
+      </div>
+      <div className="error">
+      {errorMessage && <span >{errorMessage}</span>}
       </div>
       <EventView date={viewDateDetails} title="Incoming Events" />
     </div>
