@@ -21,13 +21,13 @@
   cursor: pointer;
 }
 
-.day-cell .cell.today {
+.day-cell .date.today {
   background: white;
   border-radius: 3px;
   color: black;
 }
 
-.day-cell .cell.selected {
+.day-cell .date.selected {
   background: rgb(12, 12, 12);
   border-radius: 3px;
   color: white;
@@ -132,7 +132,7 @@
   background: #ffffff;
   border-radius: 10px;
   width: 340px;
-  height: 320px;
+  height: 385px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
 .overlay {
@@ -168,6 +168,57 @@
   margin-right: 10px;
 }
 
+.row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.days-inline {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  text-align: center;
+  color: rgba(53, 53, 53, 0.801);
+}
+
+.date-view {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-inline-calendar {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.date-inline-calendar.inline-today {
+  background: #fec775;
+  border-radius: 3px;
+  border-radius: 50px;
+  color: black;
+}
+.date-inline-calendar.inline-disabled {
+  color: rgba(53, 53, 53, 0.479);
+}
+
+.day-cell .date-inline-calendar.selected {
+  background: rgb(12, 12, 12);
+  border-radius: 3px;
+  color: white;
+}
+
 .years_card {
   position: absolute;
   top: 50px;
@@ -176,7 +227,7 @@
   margin: 0 auto;
   background: white;
   width: 340px;
-  height: 270px;
+  height: 305px;
   border-radius: 0 0 10px 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -282,6 +333,7 @@
   font-size: 12px;
   color: rgba(0, 0, 0, 0.637);
 }
+
 .progressText {
   display: flex;
   align-items: center;
