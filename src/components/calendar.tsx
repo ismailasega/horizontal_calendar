@@ -122,6 +122,7 @@ const Calendar: React.FC<calendar> = (props) => {
   const selectDate = (day: number, selectedDayStr: string) => {
     setSelectedDate(moment(day));
     setDateDetails(selectedDayStr);
+    setCurrentMonth(moment(selectedDayStr, "ddd Do MMM YYYY"));
   };
 
   /**
@@ -142,7 +143,7 @@ const Calendar: React.FC<calendar> = (props) => {
         const cloneDay = +day;
         days.push(
           <div
-            className={`cell ${
+            className={`date ${
               moment(day).isSame(moment(), "day")
                 ? "today"
                 : moment(day).isSame(selectedDate, "day")
@@ -216,6 +217,7 @@ const Calendar: React.FC<calendar> = (props) => {
         <InlineCalendar
           close={closeCustomDate}
           setCustomDateStr={setCustomDate}
+          setInlineCalendarDate={selectDate}
           title="Select Date"
         />
       )}
