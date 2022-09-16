@@ -20,6 +20,7 @@ type inlineCalender = {
   title: string;
   close: any;
   setCustomDateStr: any;
+  setInlineCalendarDate: any;
 };
 
 const InlineCalendar: React.FC<inlineCalender> = (props) => {
@@ -28,7 +29,6 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    *
    */
   const [currentMonth, setCurrentMonth] = useState(moment());
-  const [selectedDate, setSelectedDate] = useState(moment());
   const [yearSelector, setYearSelector] = useState(false);
   const [yearList, setYearList] = useState<number[]>([]);
   const [yearInput, setYearInput] = useState<string>("");
@@ -148,7 +148,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
   }, [yearInput, monthInput, dayInput, customDateStr]);
 
   /**
-   * Calender days
+   * Custom input date
    *
    *
    */
@@ -194,7 +194,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = moment(day).format("DD");
-        // const cloneDay = +day;
+        const cloneDay = +day;
         days.push(
           <div
             className={`date-inline-calendar ${
@@ -206,8 +206,9 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
             }`}
             key={i}
             onClick={() => {
-              // const selectedDayStr = moment(cloneDay).format("ddd Do MMM YYYY");
-              // selectDate(cloneDay, selectedDayStr);
+              const selectedDayStr = moment(cloneDay).format("ddd Do MMM YYYY");
+              props.setInlineCalendarDate(cloneDay, selectedDayStr);
+              props.close();
             }}
           >
             <span> {formattedDate}</span>
