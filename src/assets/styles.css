@@ -202,10 +202,14 @@
   border: 1px solid #fff;
   cursor: pointer;
 }
+.date-inline-calendar:hover {
+  color: white;
+  background: black;
+  border-radius: 50px;
+}
 
 .date-inline-calendar.inline-today {
   background: #fec775;
-  border-radius: 3px;
   border-radius: 50px;
   color: black;
 }
