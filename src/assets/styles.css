@@ -124,6 +124,11 @@
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+.inline-setcion {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   background: #ffffff;
   border-radius: 10px;
   width: 340px;
@@ -285,60 +290,86 @@
   color: #000000a4;
   margin-top: 40px;
 }
+.date-input-container {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 10px;
+  width: 340px;
+  height: 120px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
 .date-input-section {
   color: rgba(0, 0, 0, 0.637);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 15px;
+  background: white;
 }
-.divider {
-  height: 1px;
-  margin: 5px 0 10px 0;
-  margin-top: 115px;
-  background: #e0e0e0;
+.input-title {
+  margin-top: 5px;
+}
+.input-section {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .date-input-month {
   border: none;
   margin-left: 5px;
   margin-right: 5px;
-  border-bottom: 1px solid gray;
-  width: 25px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.363);
+  text-align: center;
+  width: 50px;
+  height: 25px;
 }
 .date-input-year {
-  width: 40px;
-  border: none;
+  width: 50px;
+  height: 25px;
   margin-left: 5px;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.363);
 }
 .date-input-month:focus {
-  border: none;
   outline: none;
-  border-bottom: 1px solid gray;
 }
 .date-input-year:focus {
-  border: none;
   outline: none;
-  border-bottom: 1px solid gray;
 }
 .date-input-month::placeholder {
   font-size: 13px;
+  text-align: center;
   color: rgba(0, 0, 0, 0.301);
 }
 .date-input-year::placeholder {
+  text-align: center;
   font-size: 13px;
   color: rgba(0, 0, 0, 0.301);
+}
+.goBtnBlocked {
+  cursor: not-allowed;
+  background: #fec775;
+  border: #fec775;
+  border-radius: 3px;
+  margin-left: 10px;
+  width: 50px;
+  height: 25px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.3;
 }
 .goBtn {
   background: #fec775;
   border: #fec775;
   border-radius: 3px;
   margin-left: 10px;
-  width: 45px;
-  height: 20px;
+  width: 50px;
+  height: 25px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
 .goBtn:hover {
