@@ -28,6 +28,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    *
    */
   const [currentMonth, setCurrentMonth] = useState(moment());
+  const [selectedDate, setSelectedDate] = useState(moment());
   const [yearSelector, setYearSelector] = useState(false);
   const [yearList, setYearList] = useState<number[]>([]);
   const [yearInput, setYearInput] = useState<string>("");
@@ -166,10 +167,58 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
     let startDate = moment(currentMonth).startOf("week");
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div key={i}>{moment(i, "e").add(startDate, i).format("dd")}</div>
+        <div className="days-inline" key={i}>
+          {moment(i, "e").add(startDate, i).format("dd")}
+        </div>
       );
     }
     return days;
+  };
+
+  /**
+   * Generating Month View
+   *
+   */
+  const dateCells = () => {
+    const firstDayOfMonth = moment(currentMonth).clone().startOf("month");
+    const lastDayOfMonth = moment(firstDayOfMonth).clone().endOf("month");
+    const startDate = moment(firstDayOfMonth).startOf("week");
+    const endDate = moment(lastDayOfMonth).endOf("week");
+
+    const rows = [];
+    let days = [];
+
+    let day = startDate;
+    let formattedDate = "";
+
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        formattedDate = moment(day).format("DD");
+        // const cloneDay = +day;
+        days.push(
+          <div
+            className={`date-inline-calendar ${
+              moment(day).isSame(moment(), "day")
+                ? "inline-today"
+                : !moment(day).isSame(firstDayOfMonth, "month")
+                ? "inline-disabled"
+                : ""
+            }`}
+            key={i}
+            onClick={() => {
+              // const selectedDayStr = moment(cloneDay).format("ddd Do MMM YYYY");
+              // selectDate(cloneDay, selectedDayStr);
+            }}
+          >
+            <span> {formattedDate}</span>
+          </div>
+        );
+        day = moment(day).add(1, "days");
+      }
+      rows.push(days);
+      days = [];
+    }
+    return rows;
   };
 
   return (
@@ -226,41 +275,46 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
             </div>
           </div>
         </div>
-        <div className="inline-days">{calendarDays()}</div>
-        <p className="progressText">Work in progress...</p>
+        <div className="date-view">
+          <div className="row">{calendarDays()}</div>
+          <div className="row">{dateCells()}</div>
+        </div>
+        {/* <p className="progressText">Work in progress...</p> */}
       </div>
       <div className="date-input-container">
-      <div className="date-input-section">
+        <div className="date-input-section">
           <div className="input-title">
-            <strong>OR </strong>Jump to the Date:
+            <strong>OR </strong>Input Date below
           </div>
           <div className="input-section">
-          <input
-            type="number"
-            onChange={handleDayChange}
-            className="date-input-month"
-            placeholder="DD"
-          />
-          <input
-            type="number"
-            onChange={handleMonthChange}
-            className="date-input-month"
-            placeholder="MM"
-          />
-          <input
-            type="number"
-            onChange={handleYearChange}
-            className="date-input-year"
-            placeholder="YYYY"
-          />
+            <input
+              type="number"
+              onChange={handleDayChange}
+              className="date-input-month"
+              placeholder="DD"
+            />
+            <input
+              type="number"
+              onChange={handleMonthChange}
+              className="date-input-month"
+              placeholder="MM"
+            />
+            <input
+              type="number"
+              onChange={handleYearChange}
+              className="date-input-year"
+              placeholder="YYYY"
+            />
           </div>
-          {yearInput && dayInput && monthInput ? <button className="goBtn" onClick={customDate}>
-            Go
-          </button>: <button className="goBtnBlocked">
-            Go
-          </button>}
+          {yearInput && dayInput && monthInput ? (
+            <button className="goBtn" onClick={customDate}>
+              Go
+            </button>
+          ) : (
+            <button className="goBtnBlocked">Go</button>
+          )}
         </div>
-        </div>
+      </div>
     </div>
   );
 };
