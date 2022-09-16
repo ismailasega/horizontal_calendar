@@ -28,7 +28,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    * Declaring state values
    *
    */
-  const [currentMonth, setCurrentMonth] = useState(moment());
+  const [currentMonth, setCurrentMonth] = useState<any>(moment());
   const [yearSelector, setYearSelector] = useState(false);
   const [yearList, setYearList] = useState<number[]>([]);
   const [yearInput, setYearInput] = useState<string>("");
@@ -249,7 +249,16 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
               <div className="year-listing">
                 {yearList.length !== 0 &&
                   yearList.map((year, i) => (
-                    <div key={i}>
+                    <div
+                      key={i}
+                      onClick={() => {
+                        const selectedYear = +year;
+                        const activeMonth = moment(currentMonth).format("MMMM");
+                        const setActiveMonth = activeMonth + " " + selectedYear;
+                        setCurrentMonth(setActiveMonth);
+                        hideYearSelecetor();
+                      }}
+                    >
                       <span
                         className={`year-item ${
                           moment(year).isSame(moment().year())
