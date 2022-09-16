@@ -30,9 +30,9 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
   const [currentMonth, setCurrentMonth] = useState(moment());
   const [yearSelector, setYearSelector] = useState(false);
   const [yearList, setYearList] = useState<number[]>([]);
-  const [yearInput, setYearInput] = useState<number>(moment().year());
-  const [monthInput, setMonthInput] = useState<number>(moment().month());
-  const [dayInput, setDayInput] = useState<number>(moment().day());
+  const [yearInput, setYearInput] = useState<string>("");
+  const [monthInput, setMonthInput] = useState<string>("");
+  const [dayInput, setDayInput] = useState<string>("");
   const [customDateStr, setCustomDateStr] = useState<string>();
   /**
    * Previous month navigation
@@ -113,7 +113,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    */
 
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const setYear = Number(e.target.value);
+    const setYear = e.target.value;
     setYearInput(setYear);
   };
 
@@ -125,7 +125,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    */
 
   const handleMonthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const setMonth = Number(e.target.value);
+    const setMonth = e.target.value;
     setMonthInput(setMonth);
   };
 
@@ -137,13 +137,12 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
    */
 
   const handleDayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const setDay = Number(e.target.value);
+    const setDay = e.target.value;
     setDayInput(setDay);
   };
 
   useEffect(() => {
-    const createDate =
-      dayInput.toString() + -monthInput.toString() + -yearInput.toString();
+    const createDate = dayInput + "-" + monthInput + "-" + yearInput;
     setCustomDateStr(createDate);
   }, [yearInput, monthInput, dayInput, customDateStr]);
 
@@ -174,8 +173,8 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
   };
 
   return (
-    <>
-      <div className="inline-main-container">
+    <div className="inline-main-container">
+      <div className="inline-setcion">
         <div className="header">
           <div className="titleBar">
             <div>{props.title}</div>
@@ -229,37 +228,40 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
         </div>
         <div className="inline-days">{calendarDays()}</div>
         <p className="progressText">Work in progress...</p>
-        <div className="divider"></div>
-        <div className="date-input-section">
-          <div>
-            <strong>OR </strong>Input Date:{" "}
+      </div>
+      <div className="date-input-container">
+      <div className="date-input-section">
+          <div className="input-title">
+            <strong>OR </strong>Jump to the Date:
           </div>
+          <div className="input-section">
           <input
             type="number"
             onChange={handleDayChange}
             className="date-input-month"
             placeholder="DD"
-          />{" "}
-          {"/"}{" "}
+          />
           <input
             type="number"
             onChange={handleMonthChange}
             className="date-input-month"
             placeholder="MM"
-          />{" "}
-          {"/"}{" "}
+          />
           <input
             type="number"
             onChange={handleYearChange}
             className="date-input-year"
             placeholder="YYYY"
           />
-          <button className="goBtn" onClick={customDate}>
+          </div>
+          {yearInput && dayInput && monthInput ? <button className="goBtn" onClick={customDate}>
             Go
-          </button>
+          </button>: <button className="goBtnBlocked">
+            Go
+          </button>}
         </div>
-      </div>
-    </>
+        </div>
+    </div>
   );
 };
 
