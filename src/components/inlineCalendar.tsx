@@ -241,7 +241,7 @@ const InlineCalendar: React.FC<inlineCalender> = (props) => {
           {yearSelector && (
             <div className="years_card">
               <div className="titleBar">
-                <span className="year-text">{calendarHeader()}</span>
+                <span className="year-selector">{calendarHeader()}</span>
                 <div className="inline-back" onClick={hideYearSelecetor}>
                   <IoChevronBackSharp /> <span>Back</span>
                 </div>
